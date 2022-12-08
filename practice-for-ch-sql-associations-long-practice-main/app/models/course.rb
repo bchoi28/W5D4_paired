@@ -13,7 +13,7 @@ class Course < ApplicationRecord
     validates :name, presence: true 
 
     has_many :enrollments, 
-        primary_key: :id, 
+        primary_key: :id, #referring nto our courses primary id
         foreign_key: :course_id,
         class_name: :Enrollment
 
@@ -27,9 +27,10 @@ class Course < ApplicationRecord
         class_name: :Course,
         optional: true 
 
-    has_one :instructor, 
-        through: :enrollments,
-        source: :student
+    belongs_to :instructor, 
+        primary_key: :id,
+        foreign_key: :instructor_id,
+        class_name: :User
 
 
 end
