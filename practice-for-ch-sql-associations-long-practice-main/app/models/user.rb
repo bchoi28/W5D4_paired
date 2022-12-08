@@ -9,13 +9,14 @@
 #
 class User < ApplicationRecord
     validates :name, presence: true 
-    has_many :enrollments,
+
+    has_many :enrolled_courses,
         primary_key: :id, 
         foreign_key: :student_id,
         class_name: :Enrollment
 
     has_many :courses, 
-        through: :enrollments,
+        through: :enrolled_courses,
         source: :course
 
 end

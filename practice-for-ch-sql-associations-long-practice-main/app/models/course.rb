@@ -12,13 +12,13 @@
 class Course < ApplicationRecord
     validates :name, presence: true 
     
-    has_many :enrollments, 
+    has_many :enrolled_students, 
         primary_key: :id, 
         foreign_key: :course_id,
         class_name: :Enrollment
 
     has_many :students,
-        through: :enrollments,
-        source: :course
+        through: :enrolled_students,
+        source: :student
 
 end
